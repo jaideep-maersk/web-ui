@@ -58,7 +58,13 @@ const Home: NextPage = () => {
 
           {/* CTA Section */}
           <div className="text-center">
-            <div className="inline-flex gap-4">
+            <div className="inline-flex gap-4 flex-wrap justify-center">
+              <Link
+                href="/components"
+                className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors"
+              >
+                🎨 Component Library
+              </Link>
               <Link
                 href="/chat"
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
