@@ -22,3 +22,16 @@ export { Textarea } from './Textarea';
 export { Toggle } from './Toggle';
 export { RadioGroup } from './RadioGroup';
 export { Avatar } from './Avatar';
+
+// Tier 3: Complex Components (Session 2)
+export { Drawer } from './Drawer';
+export { Selector } from './Selector';
+export { Banner } from './Banner';
+export { Overlay } from './Overlay';
+export { InputModal } from './InputModal';
+export { Switch } from './Switch';
+export { Image } from './Image';
+export { Emoji } from './Emoji';
+export { EmojiPicker } from './EmojiPicker';
+export { FileItem } from './FileItem';
+export { ProgressBar, CircularProgress } from './ProgressBar';

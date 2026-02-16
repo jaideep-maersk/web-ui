@@ -20,21 +20,47 @@ import {
   Toggle,
   RadioGroup,
   Avatar,
+  Drawer,
+  Selector,
+  Banner,
+  Overlay,
+  InputModal,
+  Switch,
+  Image,
+  Emoji,
+  EmojiPicker,
+  FileItem,
+  ProgressBar,
+  CircularProgress,
 } from '@/components/ui';
 
 const ComponentsShowcase: NextPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
+  const [showInputModal, setShowInputModal] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
+  const [isSwitched, setIsSwitched] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedDropdown, setSelectedDropdown] = useState('');
+  const [selectedSelector, setSelectedSelector] = useState('');
   const [selectedRadio, setSelectedRadio] = useState('option1');
+  const [selectedEmoji, setSelectedEmoji] = useState('');
+  const [progressValue, setProgressValue] = useState(45);
 
   const dropdownOptions = [
     { value: 'option1', label: 'Option 1' },
     { value: 'option2', label: 'Option 2' },
     { value: 'option3', label: 'Option 3' },
+  ];
+
+  const selectorOptions = [
+    { value: 'apple', label: 'Apple' },
+    { value: 'banana', label: 'Banana' },
+    { value: 'orange', label: 'Orange' },
+    { value: 'grape', label: 'Grape' },
   ];
 
   const radioOptions = [
@@ -68,6 +94,16 @@ const ComponentsShowcase: NextPage = () => {
       </Head>
 
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        {/* Banner at top */}
+        {showBanner && (
+          <Banner
+            type="info"
+            content="Phase 2 Session 2 Complete! 28 components now available 🎉"
+            dismissible
+            onDismiss={() => setShowBanner(false)}
+          />
+        )}
+        
         {/* Header */}
         <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -76,7 +112,7 @@ const ComponentsShowcase: NextPage = () => {
                 Component Library Showcase
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Phase 2: 17 React components migrated from Svelte
+                Phase 2: 28 React components migrated from Svelte (Session 1 + Session 2)
               </p>
             </div>
             <Link
@@ -227,31 +263,120 @@ const ComponentsShowcase: NextPage = () => {
 
           {/* Modal & ConfirmDialog */}
           <Card title="Modal & Dialog">
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-wrap">
               <Button onClick={() => setShowModal(true)}>Open Modal</Button>
               <Button variant="danger" onClick={() => setShowConfirm(true)}>
                 Open Confirm Dialog
+              </Button>
+              <Button variant="secondary" onClick={() => setShowInputModal(true)}>
+                Open Input Modal
+              </Button>
+              <Button variant="ghost" onClick={() => setShowDrawer(true)}>
+                Open Drawer
+              </Button>
+            </div>
+          </Card>
+
+          {/* NEW: Tier 3 Components */}
+          <Card title="🆕 Selector (Enhanced Dropdown)">
+            <Selector
+              value={selectedSelector}
+              onChange={setSelectedSelector}
+              options={selectorOptions}
+              placeholder="Select a fruit..."
+              searchEnabled
+              searchPlaceholder="Search fruits..."
+              className="max-w-xs"
+            />
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              Selected: {selectedSelector || 'None'}
+            </p>
+          </Card>
+
+          <Card title="🆕 Switch Component">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <Switch checked={isSwitched} onChange={setIsSwitched} size="sm" />
+                <span>Small</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Switch checked={isSwitched} onChange={setIsSwitched} size="md" />
+                <span>Medium (checked: {isSwitched.toString()})</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Switch checked={isSwitched} onChange={setIsSwitched} size="lg" />
+                <span>Large</span>
+              </div>
+            </div>
+          </Card>
+
+          <Card title="🆕 Image Component">
+            <Image
+              src="https://via.placeholder.com/300x200"
+              alt="Placeholder image"
+              enablePreview
+            />
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+              Click image to preview
+            </p>
+          </Card>
+
+          <Card title="🆕 Emoji & Emoji Picker">
+            <div className="space-y-4">
+              <div className="flex gap-2">
+                <Emoji shortCode=":smile:" />
+                <Emoji shortCode=":heart:" />
+                <Emoji shortCode=":fire:" />
+                <Emoji shortCode=":thumbsup:" />
+              </div>
+              <EmojiPicker onSelect={(emoji) => setSelectedEmoji(emoji)} />
+              {selectedEmoji && <p className="text-sm">Last: {selectedEmoji}</p>}
+            </div>
+          </Card>
+
+          <Card title="🆕 File Item">
+            <div className="space-y-2">
+              <FileItem
+                name="document.pdf"
+                size="1024000"
+                type="application/pdf"
+                onDelete={() => alert('File deleted')}
+              />
+              <FileItem
+                name="image.png"
+                size="512000"
+                type="image/png"
+                onClick={() => alert('File clicked')}
+              />
+            </div>
+          </Card>
+
+          <Card title="🆕 Progress Bars">
+            <div className="space-y-6">
+              <div>
+                <ProgressBar value={progressValue} showLabel />
+                <ProgressBar value={75} variant="success" className="mt-2" />
+              </div>
+              <div className="flex gap-4">
+                <CircularProgress value={progressValue} />
+                <CircularProgress value={75} variant="success" />
+              </div>
+              <Button size="sm" onClick={() => setProgressValue((progressValue + 10) % 100)}>
+                +10%
               </Button>
             </div>
           </Card>
         </div>
 
         {/* Modal */}
-        <Modal
-          isOpen={showModal}
-          onClose={() => setShowModal(false)}
-          title="Example Modal"
-          size="md"
-        >
+        <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Example Modal" size="md">
           <div className="space-y-4">
             <p className="text-gray-600 dark:text-gray-300">
               This is an example modal with custom content.
             </p>
             <Input label="Name" placeholder="Enter your name..." />
             <div className="flex gap-2 justify-end">
-              <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Cancel
-              </Button>
+              <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
               <Button onClick={() => setShowModal(false)}>Save</Button>
             </div>
           </div>
@@ -268,6 +393,26 @@ const ComponentsShowcase: NextPage = () => {
           confirmText="Yes, delete"
           cancelText="Cancel"
         />
+
+        {/* Input Modal */}
+        <InputModal
+          isOpen={showInputModal}
+          onClose={() => setShowInputModal(false)}
+          onConfirm={(value) => alert(`Entered: ${value}`)}
+          title="Enter Value"
+          placeholder="Type something..."
+        />
+
+        {/* Drawer */}
+        <Drawer isOpen={showDrawer} onClose={() => setShowDrawer(false)}>
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4">Drawer Content</h2>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              This is a drawer that slides up from the bottom.
+            </p>
+            <Button onClick={() => setShowDrawer(false)}>Close Drawer</Button>
+          </div>
+        </Drawer>
       </div>
     </>
   );
