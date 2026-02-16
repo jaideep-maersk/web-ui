@@ -35,3 +35,9 @@ export { Emoji } from './Emoji';
 export { EmojiPicker } from './EmojiPicker';
 export { FileItem } from './FileItem';
 export { ProgressBar, CircularProgress } from './ProgressBar';
+
+// Tier 3: Complex Components (Session 3)
+export { HotkeyHint } from './HotkeyHint';
+export { Marquee } from './Marquee';
+export { ImagePreview } from './ImagePreview';
+export { FileItemModal } from './FileItemModal';

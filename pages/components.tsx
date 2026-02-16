@@ -32,6 +32,10 @@ import {
   FileItem,
   ProgressBar,
   CircularProgress,
+  HotkeyHint,
+  Marquee,
+  ImagePreview,
+  FileItemModal,
 } from '@/components/ui';
 
 const ComponentsShowcase: NextPage = () => {
@@ -40,6 +44,8 @@ const ComponentsShowcase: NextPage = () => {
   const [showDrawer, setShowDrawer] = useState(false);
   const [showInputModal, setShowInputModal] = useState(false);
   const [showBanner, setShowBanner] = useState(true);
+  const [showImagePreview, setShowImagePreview] = useState(false);
+  const [showFileModal, setShowFileModal] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
   const [isSwitched, setIsSwitched] = useState(false);
@@ -98,7 +104,7 @@ const ComponentsShowcase: NextPage = () => {
         {showBanner && (
           <Banner
             type="info"
-            content="Phase 2 Session 2 Complete! 28 components now available 🎉"
+            content="Phase 2 Session 3 Complete! 32 components now available - Tier 3 is 100% complete! 🎉"
             dismissible
             onDismiss={() => setShowBanner(false)}
           />
@@ -112,7 +118,7 @@ const ComponentsShowcase: NextPage = () => {
                 Component Library Showcase
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Phase 2: 28 React components migrated from Svelte (Session 1 + Session 2)
+                Phase 2: 32 React components migrated from Svelte (Sessions 1 + 2 + 3) - Tier 3 Complete!
               </p>
             </div>
             <Link
@@ -366,7 +372,90 @@ const ComponentsShowcase: NextPage = () => {
               </Button>
             </div>
           </Card>
+
+          {/* Session 3 Components */}
+          <Card title="🆕 Hotkey Hint (Session 3)">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <span className="text-sm">Save:</span>
+                <HotkeyHint keys={['mod', 's']} />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-sm">Copy:</span>
+                <HotkeyHint keys={['mod', 'c']} />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-sm">Paste:</span>
+                <HotkeyHint keys={['mod', 'v']} />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-sm">Delete:</span>
+                <HotkeyHint keys={['mod', 'shift', 'Delete']} />
+              </div>
+            </div>
+          </Card>
+
+          <Card title="🆕 Marquee (Session 3)">
+            <div className="space-y-4">
+              <Marquee
+                words={['Welcome to Open WebUI', 'Next.js + TypeScript', 'Phase 2 Complete!', 'Component Library']}
+                duration={3000}
+                className="text-lg font-semibold text-blue-600 dark:text-blue-400"
+              />
+              <Marquee
+                words={['Fast', 'Reliable', 'Modern', 'Accessible']}
+                duration={2000}
+                className="text-sm text-gray-600 dark:text-gray-400"
+              />
+            </div>
+          </Card>
+
+          <Card title="🆕 Image Preview (Session 3)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Click the button below to open an image in full-screen preview with zoom and pan capabilities.
+              </p>
+              <Button onClick={() => setShowImagePreview(true)}>
+                Open Image Preview
+              </Button>
+            </div>
+          </Card>
+
+          <Card title="🆕 File Item Modal (Session 3)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Click the button to see a file detail modal with content preview and metadata.
+              </p>
+              <Button onClick={() => setShowFileModal(true)}>
+                Open File Modal
+              </Button>
+            </div>
+          </Card>
         </div>
+
+        {/* Image Preview Modal */}
+        <ImagePreview
+          show={showImagePreview}
+          src="https://picsum.photos/1200/800"
+          alt="Sample Image"
+          onClose={() => setShowImagePreview(false)}
+        />
+
+        {/* File Item Modal */}
+        <FileItemModal
+          show={showFileModal}
+          onClose={() => setShowFileModal(false)}
+          file={{
+            name: 'example-document.txt',
+            size: 2048,
+            type: 'file',
+            content: 'This is a sample file content.\n\nIt demonstrates the FileItemModal component with multiple lines of text.\n\nYou can add more content here to see how it handles longer documents.\n\nThe modal supports different file types:\n- Text files\n- Code files\n- Images\n- PDFs\n- Audio files\n\nAnd much more!',
+            created_at: Math.floor(Date.now() / 1000),
+            meta: {
+              content_type: 'text/plain',
+            },
+          }}
+        />
 
         {/* Modal */}
         <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Example Modal" size="md">
