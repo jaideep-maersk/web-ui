@@ -4,17 +4,26 @@
 
 This migration establishes the foundation for transitioning the Open-WebUI project from a **Svelte frontend + Python FastAPI backend** to a unified **Next.js + TypeScript** stack.
 
+**Latest Update**: Upgraded to Next.js 16.1.6 to patch critical security vulnerabilities (DoS, Authorization Bypass, SSRF, and others).
+
 ## What Was Accomplished
 
 ### 1. Next.js Foundation ✅
 
 **Infrastructure Setup:**
-- Next.js 14 with TypeScript
+- Next.js 16.1.6 with TypeScript (latest secure version)
 - React 18 and React DOM
 - Tailwind CSS (already configured, reused)
+- Turbopack enabled (Next.js 16 default bundler)
 - Project structure with Pages Router
 - Environment variable configuration
 - Development and build scripts
+
+**Security:**
+- ✅ All 9 Next.js vulnerabilities patched
+- ✅ Upgraded from vulnerable 14.2.35 to secure 16.1.6
+- ✅ Fixed critical DoS, Authorization Bypass, and SSRF issues
+- ✅ Zero Next.js vulnerabilities remaining
 
 **Configuration Files:**
 - `next.config.mjs` - Next.js configuration
