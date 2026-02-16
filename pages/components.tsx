@@ -58,6 +58,16 @@ import {
   MessageSkeleton,
   ChatAvatar,
   Citation,
+  MessageContainer,
+  CodeBlock,
+  SystemMessage,
+  MessageTimestamp,
+  MessageHeader,
+  MessageFooter,
+  ThreadIndicator,
+  Reaction,
+  ReactionPicker,
+  MarkdownRenderer,
   type Tag,
   type ChatItem,
   type DropdownOption,
@@ -94,6 +104,15 @@ const ComponentsShowcase: NextPage = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [selectedChat, setSelectedChat] = useState('');
   const [svgContent, setSvgContent] = useState('<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="80" fill="#3b82f6"/><circle cx="100" cy="100" r="50" fill="#ffffff"/></svg>');
+  const [showReactionPicker, setShowReactionPicker] = useState(false);
+  const [reactions, setReactions] = useState([
+    { emoji: '👍', count: 5, reacted: false },
+    { emoji: '❤️', count: 3, reacted: true },
+    { emoji: '😂', count: 2, reacted: false },
+  ]);
+  const [showThread, setShowThread] = useState(false);
+  const [markdownContent, setMarkdownContent] = useState('# Hello World\n\nThis is **bold** and *italic* text.\n\n## Code Example\n```javascript\nconst greeting = "Hello!";\n```\n\n- Item 1\n- Item 2\n\n> This is a quote');
+
 
   const chatItems: ChatItem[] = [
     { id: '1', title: 'First Chat', timestamp: '2 hours ago', unread: 3, active: selectedChat === '1' },
@@ -171,7 +190,7 @@ const ComponentsShowcase: NextPage = () => {
         {showBanner && (
           <Banner
             type="info"
-            content="Phase 2 Session 6 Started! 57 components - Tier 5: Chat Components! 💬"
+            content="Phase 2 Session 7 Started! 67 components - Tier 5: Core Message Components! 💬✨"
             dismissible
             onDismiss={() => setShowBanner(false)}
           />
@@ -185,7 +204,7 @@ const ComponentsShowcase: NextPage = () => {
                 Component Library Showcase
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Phase 2: 57 React components migrated from Svelte (Sessions 1-6) - Tier 5 Started! ✨
+                Phase 2: 67 React components migrated from Svelte (Sessions 1-7) - Tier 5 Progress! ✨
               </p>
             </div>
             <Link
@@ -948,6 +967,170 @@ const ComponentsShowcase: NextPage = () => {
               url="https://www.typescriptlang.org/docs/handbook/intro.html"
               snippet="TypeScript is a strongly typed programming language that builds on JavaScript."
             />
+          </div>
+        </Card>
+
+        {/* Session 7: Core Message Components */}
+        <div className="col-span-full">
+          <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 rounded-lg text-white mb-6">
+            <h2 className="text-2xl font-bold">Session 7: Core Message Components 💬</h2>
+            <p className="mt-2">10 new components for message display, reactions, and formatting</p>
+            <p className="mt-1 text-sm opacity-90">Total: 67 components (13.4%)</p>
+          </div>
+        </div>
+
+        {/* Message Container */}
+        <Card title="Message Container">
+          <div className="space-y-4 max-w-3xl">
+            <MessageContainer
+              sender="user"
+              timestamp="2m ago"
+              status="sent"
+            >
+              <div className="bg-blue-600 text-white px-4 py-2 rounded-lg max-w-md">
+                Hello! This is a user message.
+              </div>
+            </MessageContainer>
+            
+            <MessageContainer
+              sender="assistant"
+              timestamp="1m ago"
+            >
+              <div className="bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-lg max-w-md">
+                Hi! I'm an assistant. How can I help you today?
+              </div>
+            </MessageContainer>
+          </div>
+        </Card>
+
+        {/* Code Block */}
+        <Card title="Code Block">
+          <CodeBlock
+            code={`function greet(name) {\n  return \`Hello, \${name}!\`;\n}\n\nconsole.log(greet("World"));`}
+            language="javascript"
+            filename="example.js"
+            showLineNumbers={true}
+          />
+        </Card>
+
+        {/* System Message */}
+        <Card title="System Message">
+          <div className="space-y-3">
+            <SystemMessage message="User joined the chat" type="info" />
+            <SystemMessage message="Connection unstable" type="warning" />
+            <SystemMessage message="Message deleted" type="error" />
+            <SystemMessage message="Message saved successfully" type="success" />
+          </div>
+        </Card>
+
+        {/* Message Timestamp */}
+        <Card title="Message Timestamp">
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <span className="text-sm">Relative:</span>
+              <MessageTimestamp timestamp={new Date(Date.now() - 3600000)} format="relative" />
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-sm">Absolute:</span>
+              <MessageTimestamp timestamp={new Date()} format="absolute" />
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-sm">Both:</span>
+              <MessageTimestamp timestamp={new Date(Date.now() - 7200000)} format="both" />
+            </div>
+          </div>
+        </Card>
+
+        {/* Message Header */}
+        <Card title="Message Header">
+          <div className="space-y-4">
+            <MessageHeader
+              senderName="John Doe"
+              senderRole="Admin"
+              timestamp="5m ago"
+              badge={<Badge type="success">Verified</Badge>}
+            />
+            <MessageHeader
+              senderName="Jane Smith"
+              timestamp="10m ago"
+              isEdited={true}
+            />
+          </div>
+        </Card>
+
+        {/* Message Footer */}
+        <Card title="Message Footer">
+          <div className="max-w-2xl">
+            <MessageFooter
+              reactions={reactions}
+              onReactionClick={(emoji) => {
+                setReactions(reactions.map(r => 
+                  r.emoji === emoji ? { ...r, reacted: !r.reacted, count: r.reacted ? r.count - 1 : r.count + 1 } : r
+                ));
+              }}
+              onAddReaction={() => setShowReactionPicker(!showReactionPicker)}
+              metadata={<span>Edited 2m ago</span>}
+            />
+          </div>
+        </Card>
+
+        {/* Thread Indicator */}
+        <Card title="Thread Indicator">
+          <div className="max-w-2xl">
+            <ThreadIndicator
+              count={5}
+              isExpanded={showThread}
+              onClick={() => setShowThread(!showThread)}
+              latestReply={{
+                author: "Alice",
+                timestamp: "2m ago"
+              }}
+            />
+          </div>
+        </Card>
+
+        {/* Reactions */}
+        <Card title="Reactions">
+          <div className="flex flex-wrap gap-2">
+            <Reaction emoji="👍" count={12} reacted={false} onClick={() => alert('Thumbs up!')} />
+            <Reaction emoji="❤️" count={8} reacted={true} onClick={() => alert('Heart!')} />
+            <Reaction emoji="😂" count={5} reacted={false} onClick={() => alert('Laugh!')} />
+            <Reaction emoji="🎉" count={3} reacted={false} size="lg" onClick={() => alert('Party!')} />
+          </div>
+        </Card>
+
+        {/* Reaction Picker */}
+        <Card title="Reaction Picker">
+          <div className="relative">
+            <Button onClick={() => setShowReactionPicker(!showReactionPicker)}>
+              Add Reaction
+            </Button>
+            {showReactionPicker && (
+              <ReactionPicker
+                onSelect={(emoji) => {
+                  alert(`Selected: ${emoji}`);
+                  setShowReactionPicker(false);
+                }}
+                onClose={() => setShowReactionPicker(false)}
+                position="bottom"
+              />
+            )}
+          </div>
+        </Card>
+
+        {/* Markdown Renderer */}
+        <Card title="Markdown Renderer">
+          <div className="space-y-4">
+            <Textarea
+              value={markdownContent}
+              onChange={(e) => setMarkdownContent(e.target.value)}
+              rows={6}
+              label="Edit Markdown"
+            />
+            <div className="border-t pt-4">
+              <h4 className="text-sm font-semibold mb-2">Preview:</h4>
+              <MarkdownRenderer content={markdownContent} />
+            </div>
           </div>
         </Card>
 

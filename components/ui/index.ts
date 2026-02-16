@@ -77,3 +77,15 @@ export { ErrorMessage } from './ErrorMessage';
 export { MessageSkeleton } from './MessageSkeleton';
 export { ChatAvatar } from './ChatAvatar';
 export { Citation } from './Citation';
+
+// Tier 5: Chat Components (Session 7)
+export { MessageContainer } from './MessageContainer';
+export { CodeBlock } from './CodeBlock';
+export { SystemMessage } from './SystemMessage';
+export { MessageTimestamp } from './MessageTimestamp';
+export { MessageHeader } from './MessageHeader';
+export { MessageFooter } from './MessageFooter';
+export { ThreadIndicator } from './ThreadIndicator';
+export { Reaction } from './Reaction';
+export { ReactionPicker } from './ReactionPicker';
+export { MarkdownRenderer } from './MarkdownRenderer';
