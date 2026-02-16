@@ -41,3 +41,14 @@ export { HotkeyHint } from './HotkeyHint';
 export { Marquee } from './Marquee';
 export { ImagePreview } from './ImagePreview';
 export { FileItemModal } from './FileItemModal';
+
+// Tier 4: Data Display & Advanced Components (Session 4)
+export { SensitiveInput } from './SensitiveInput';
+export { Tags } from './Tags';
+export { TagInput } from './TagInput';
+export { TagList } from './TagList';
+export { TagItem } from './TagItem';
+export type { Tag } from './TagItem';
+export { DragGhost } from './DragGhost';
+export { RichTextInput } from './RichTextInput';
+export { FormattingButtons } from './FormattingButtons';

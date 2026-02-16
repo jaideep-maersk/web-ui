@@ -36,6 +36,12 @@ import {
   Marquee,
   ImagePreview,
   FileItemModal,
+  SensitiveInput,
+  Tags,
+  TagInput,
+  RichTextInput,
+  FormattingButtons,
+  type Tag,
 } from '@/components/ui';
 
 const ComponentsShowcase: NextPage = () => {
@@ -55,6 +61,13 @@ const ComponentsShowcase: NextPage = () => {
   const [selectedRadio, setSelectedRadio] = useState('option1');
   const [selectedEmoji, setSelectedEmoji] = useState('');
   const [progressValue, setProgressValue] = useState(45);
+  const [password, setPassword] = useState('');
+  const [tags, setTags] = useState<Tag[]>([
+    { name: 'React' },
+    { name: 'TypeScript' },
+    { name: 'Next.js' },
+  ]);
+  const [richText, setRichText] = useState('# Hello World\n\nThis is a **bold** example.');
 
   const dropdownOptions = [
     { value: 'option1', label: 'Option 1' },
@@ -103,8 +116,8 @@ const ComponentsShowcase: NextPage = () => {
         {/* Banner at top */}
         {showBanner && (
           <Banner
-            type="info"
-            content="Phase 2 Session 3 Complete! 32 components now available - Tier 3 is 100% complete! 🎉"
+            type="success"
+            content="Phase 2 Session 4 Started! 40 components now available - Starting Tier 4! 🚀"
             dismissible
             onDismiss={() => setShowBanner(false)}
           />
@@ -118,7 +131,7 @@ const ComponentsShowcase: NextPage = () => {
                 Component Library Showcase
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Phase 2: 32 React components migrated from Svelte (Sessions 1 + 2 + 3) - Tier 3 Complete!
+                Phase 2: 40 React components migrated from Svelte (Sessions 1-4) - Tier 4 Started!
               </p>
             </div>
             <Link
@@ -429,6 +442,74 @@ const ComponentsShowcase: NextPage = () => {
               <Button onClick={() => setShowFileModal(true)}>
                 Open File Modal
               </Button>
+            </div>
+          </Card>
+
+          {/* Tier 4 Components - Session 4 */}
+          <div className="col-span-full">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 border-b-2 border-blue-500 pb-2">
+              🆕 Tier 4: Data Display & Advanced Components (Session 4)
+            </h2>
+          </div>
+
+          <Card title="🆕 Sensitive Input (Session 4)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Password input with show/hide toggle for secure data entry.
+              </p>
+              <SensitiveInput
+                value={password}
+                onChange={setPassword}
+                placeholder="Enter password..."
+                label="Password"
+              />
+              <p className="text-xs text-gray-500">Current value: {password ? '••••••' : '(empty)'}</p>
+            </div>
+          </Card>
+
+          <Card title="🆕 Tags System (Session 4)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Complete tag system with add/remove functionality.
+              </p>
+              <Tags
+                tags={tags}
+                onAdd={(tagName) => setTags([...tags, { name: tagName }])}
+                onDelete={(tagName) => setTags(tags.filter((t) => t.name !== tagName))}
+                placeholder="Add a tag..."
+              />
+              <div className="pt-2">
+                <TagInput
+                  onAdd={(tagName) => setTags([...tags, { name: tagName }])}
+                  placeholder="Add Tag"
+                />
+              </div>
+            </div>
+          </Card>
+
+          <Card title="🆕 Rich Text Input (Session 4)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                WYSIWYG/Markdown editor with formatting toolbar.
+              </p>
+              <RichTextInput
+                value={richText}
+                onChange={setRichText}
+                label="Content"
+                placeholder="Write something..."
+                showToolbar={true}
+              />
+            </div>
+          </Card>
+
+          <Card title="🆕 Formatting Buttons (Session 4)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Standalone formatting toolbar for text editors.
+              </p>
+              <FormattingButtons
+                onFormat={(format) => alert(`Format: ${format}`)}
+              />
             </div>
           </Card>
         </div>
