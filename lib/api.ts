@@ -6,6 +6,11 @@ interface FetchOptions extends RequestInit {
   params?: Record<string, string>;
 }
 
+interface ChatMessage {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+}
+
 class ApiClient {
   private baseUrl: string;
 
@@ -81,7 +86,7 @@ export const apiClient = new ApiClient();
 // Convenience exports
 export const api = {
   health: () => apiClient.get('/health'),
-  chat: (messages: any[]) => apiClient.post('/chat', { messages }),
+  chat: (messages: ChatMessage[]) => apiClient.post('/chat', { messages }),
   models: () => apiClient.get('/models'),
   login: (email: string, password: string) =>
     apiClient.post('/auth/login', { email, password }),

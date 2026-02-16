@@ -66,6 +66,12 @@ const Home: NextPage = () => {
                 Go to Chat
               </Link>
               <Link
+                href="/settings"
+                className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors"
+              >
+                Settings
+              </Link>
+              <Link
                 href="/api/health"
                 className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors"
               >
