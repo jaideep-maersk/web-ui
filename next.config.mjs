@@ -8,7 +8,10 @@ const nextConfig = {
     APP_VERSION: process.env.npm_package_version || '0.8.2',
   },
 
-  // Webpack configuration for compatibility
+  // Turbopack configuration (Next.js 16+)
+  turbopack: {},
+
+  // Webpack configuration for compatibility (fallback for non-Turbopack builds)
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
