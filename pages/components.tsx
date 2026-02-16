@@ -41,7 +41,19 @@ import {
   TagInput,
   RichTextInput,
   FormattingButtons,
+  CodeEditor,
+  CodeEditorModal,
+  Sidebar,
+  ChatList,
+  SlideShow,
+  SVGPanZoom,
+  FullHeightIframe,
+  DropdownOptions,
+  ToolCallDisplay,
   type Tag,
+  type ChatItem,
+  type DropdownOption,
+  type ToolCall,
 } from '@/components/ui';
 
 const ComponentsShowcase: NextPage = () => {
@@ -68,6 +80,39 @@ const ComponentsShowcase: NextPage = () => {
     { name: 'Next.js' },
   ]);
   const [richText, setRichText] = useState('# Hello World\n\nThis is a **bold** example.');
+  const [code, setCode] = useState('function hello() {\n  console.log("Hello World!");\n}');
+  const [showCodeModal, setShowCodeModal] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [selectedChat, setSelectedChat] = useState('');
+  const [svgContent, setSvgContent] = useState('<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="80" fill="#3b82f6"/><circle cx="100" cy="100" r="50" fill="#ffffff"/></svg>');
+
+  const chatItems: ChatItem[] = [
+    { id: '1', title: 'First Chat', timestamp: '2 hours ago', unread: 3, active: selectedChat === '1' },
+    { id: '2', title: 'Second Chat', timestamp: '1 day ago', unread: 0, active: selectedChat === '2' },
+    { id: '3', title: 'Third Chat', timestamp: '3 days ago', unread: 1, active: selectedChat === '3' },
+  ];
+
+  const slideImages = [
+    'https://via.placeholder.com/800x400/3b82f6/ffffff?text=Slide+1',
+    'https://via.placeholder.com/800x400/8b5cf6/ffffff?text=Slide+2',
+    'https://via.placeholder.com/800x400/ec4899/ffffff?text=Slide+3',
+  ];
+
+  const dropdownMenuOptions: DropdownOption[] = [
+    { id: 'edit', label: 'Edit', icon: <span>✏️</span> },
+    { id: 'copy', label: 'Copy', icon: <span>📋</span> },
+    { id: 'divider', label: '', divider: true },
+    { id: 'delete', label: 'Delete', icon: <span>🗑️</span>, danger: true },
+  ];
+
+  const toolCall: ToolCall = {
+    id: '1',
+    name: 'calculate_sum',
+    arguments: { a: 5, b: 3 },
+    result: 8,
+    status: 'success',
+    timestamp: '10:30 AM',
+  };
 
   const dropdownOptions = [
     { value: 'option1', label: 'Option 1' },
@@ -117,7 +162,7 @@ const ComponentsShowcase: NextPage = () => {
         {showBanner && (
           <Banner
             type="success"
-            content="Phase 2 Session 4 Started! 40 components now available - Starting Tier 4! 🚀"
+            content="Phase 2 Session 5 Complete! 49 components now available - Tier 4: 100% COMPLETE! 🎉"
             dismissible
             onDismiss={() => setShowBanner(false)}
           />
@@ -131,7 +176,7 @@ const ComponentsShowcase: NextPage = () => {
                 Component Library Showcase
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Phase 2: 40 React components migrated from Svelte (Sessions 1-4) - Tier 4 Started!
+                Phase 2: 49 React components migrated from Svelte (Sessions 1-5) - Tier 4 COMPLETE! ✅
               </p>
             </div>
             <Link
@@ -512,7 +557,171 @@ const ComponentsShowcase: NextPage = () => {
               />
             </div>
           </Card>
+
+          {/* Session 5: Tier 4 Complete! */}
+          <div className="col-span-full">
+            <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white p-6 rounded-lg shadow-lg">
+              <h2 className="text-2xl font-bold mb-2">🎉 Session 5: Tier 4 Complete!</h2>
+              <p className="text-lg">9 new components added - Total: 49 components (9.8%)</p>
+            </div>
+          </div>
+
+          <Card title="🆕 Code Editor (Session 5)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Syntax highlighting code editor with tab support and auto-resize.
+              </p>
+              <CodeEditor
+                value={code}
+                onChange={setCode}
+                language="javascript"
+                placeholder="Enter your code..."
+              />
+              <div className="flex gap-2">
+                <Button onClick={() => setShowCodeModal(true)} size="sm">
+                  Open in Modal
+                </Button>
+              </div>
+            </div>
+          </Card>
+
+          <Card title="🆕 Sidebar (Session 5)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Navigation sidebar that slides in from left or right.
+              </p>
+              <Button onClick={() => setShowSidebar(true)}>
+                Open Sidebar
+              </Button>
+            </div>
+          </Card>
+
+          <Card title="🆕 Chat List (Session 5)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                List of chat conversations with unread indicators.
+              </p>
+              <ChatList
+                items={chatItems}
+                onSelectChat={(id) => setSelectedChat(id)}
+                onDeleteChat={(id) => alert(`Delete chat ${id}`)}
+              />
+            </div>
+          </Card>
+
+          <Card title="🆕 SlideShow (Session 5)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Image carousel with controls and indicators.
+              </p>
+              <SlideShow
+                images={slideImages}
+                autoPlay={false}
+                showControls={true}
+                showIndicators={true}
+              />
+            </div>
+          </Card>
+
+          <Card title="🆕 SVG Pan & Zoom (Session 5)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Interactive SVG viewer with zoom, pan, and reset controls.
+              </p>
+              <SVGPanZoom
+                svgContent={svgContent}
+                width="100%"
+                height={300}
+              />
+            </div>
+          </Card>
+
+          <Card title="🆕 Full Height Iframe (Session 5)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Full-height iframe wrapper for embedding external content.
+              </p>
+              <FullHeightIframe
+                src="https://example.com"
+                title="Example Site"
+                minHeight="300px"
+                sandbox="allow-scripts allow-same-origin"
+              />
+            </div>
+          </Card>
+
+          <Card title="🆕 Dropdown Options (Session 5)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Advanced dropdown menu with icons, dividers, and danger actions.
+              </p>
+              <DropdownOptions
+                trigger={
+                  <Button variant="secondary">
+                    Options ▾
+                  </Button>
+                }
+                options={dropdownMenuOptions}
+                onSelect={(id) => alert(`Selected: ${id}`)}
+                position="right"
+              />
+            </div>
+          </Card>
+
+          <Card title="🆕 Tool Call Display (Session 5)">
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Display tool/function calls with arguments, results, and status.
+              </p>
+              <ToolCallDisplay
+                toolCall={toolCall}
+                expandedByDefault={true}
+              />
+              <ToolCallDisplay
+                toolCall={{
+                  id: '2',
+                  name: 'fetch_data',
+                  arguments: { url: 'https://api.example.com/data' },
+                  status: 'pending',
+                }}
+                expandedByDefault={false}
+              />
+            </div>
+          </Card>
         </div>
+
+        {/* Code Editor Modal */}
+        <CodeEditorModal
+          isOpen={showCodeModal}
+          onClose={() => setShowCodeModal(false)}
+          value={code}
+          onChange={setCode}
+          title="Edit Code"
+          language="javascript"
+          onSave={() => alert('Code saved!')}
+        />
+
+        {/* Sidebar */}
+        <Sidebar
+          isOpen={showSidebar}
+          onClose={() => setShowSidebar(false)}
+          position="left"
+        >
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4">Sidebar Menu</h2>
+            <nav className="space-y-2">
+              <a href="#" className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+                Home
+              </a>
+              <a href="#" className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+                Settings
+              </a>
+              <a href="#" className="block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+                Profile
+              </a>
+            </nav>
+          </div>
+        </Sidebar>
 
         {/* Image Preview Modal */}
         <ImagePreview

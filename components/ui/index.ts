@@ -52,3 +52,17 @@ export type { Tag } from './TagItem';
 export { DragGhost } from './DragGhost';
 export { RichTextInput } from './RichTextInput';
 export { FormattingButtons } from './FormattingButtons';
+
+// Tier 4: Data Display & Advanced Components (Session 5)
+export { CodeEditor } from './CodeEditor';
+export { CodeEditorModal } from './CodeEditorModal';
+export { Sidebar } from './Sidebar';
+export { ChatList } from './ChatList';
+export type { ChatItem } from './ChatList';
+export { SlideShow } from './SlideShow';
+export { SVGPanZoom } from './SVGPanZoom';
+export { FullHeightIframe } from './FullHeightIframe';
+export { DropdownOptions } from './DropdownOptions';
+export type { DropdownOption } from './DropdownOptions';
+export { ToolCallDisplay } from './ToolCallDisplay';
+export type { ToolCall } from './ToolCallDisplay';
