@@ -66,3 +66,14 @@ export { DropdownOptions } from './DropdownOptions';
 export type { DropdownOption } from './DropdownOptions';
 export { ToolCallDisplay } from './ToolCallDisplay';
 export type { ToolCall } from './ToolCallDisplay';
+
+// Tier 5: Chat Components (Session 6)
+export { ChatPlaceholder } from './ChatPlaceholder';
+export { MessageBubble } from './MessageBubble';
+export { TypingIndicator } from './TypingIndicator';
+export { MessageActions } from './MessageActions';
+export type { MessageAction } from './MessageActions';
+export { ErrorMessage } from './ErrorMessage';
+export { MessageSkeleton } from './MessageSkeleton';
+export { ChatAvatar } from './ChatAvatar';
+export { Citation } from './Citation';

@@ -50,10 +50,19 @@ import {
   FullHeightIframe,
   DropdownOptions,
   ToolCallDisplay,
+  ChatPlaceholder,
+  MessageBubble,
+  TypingIndicator,
+  MessageActions,
+  ErrorMessage,
+  MessageSkeleton,
+  ChatAvatar,
+  Citation,
   type Tag,
   type ChatItem,
   type DropdownOption,
   type ToolCall,
+  type MessageAction,
 } from '@/components/ui';
 
 const ComponentsShowcase: NextPage = () => {
@@ -161,8 +170,8 @@ const ComponentsShowcase: NextPage = () => {
         {/* Banner at top */}
         {showBanner && (
           <Banner
-            type="success"
-            content="Phase 2 Session 5 Complete! 49 components now available - Tier 4: 100% COMPLETE! 🎉"
+            type="info"
+            content="Phase 2 Session 6 Started! 57 components - Tier 5: Chat Components! 💬"
             dismissible
             onDismiss={() => setShowBanner(false)}
           />
@@ -176,7 +185,7 @@ const ComponentsShowcase: NextPage = () => {
                 Component Library Showcase
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Phase 2: 49 React components migrated from Svelte (Sessions 1-5) - Tier 4 COMPLETE! ✅
+                Phase 2: 57 React components migrated from Svelte (Sessions 1-6) - Tier 5 Started! ✨
               </p>
             </div>
             <Link
@@ -792,6 +801,156 @@ const ComponentsShowcase: NextPage = () => {
             <Button onClick={() => setShowDrawer(false)}>Close Drawer</Button>
           </div>
         </Drawer>
+
+        {/* === TIER 5: CHAT COMPONENTS (Session 6) === */}
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold">🆕 Session 6: Chat Components</h2>
+          <p className="text-sm mt-1 opacity-90">8 essential chat components for messaging interfaces</p>
+        </div>
+
+        {/* Chat Placeholder */}
+        <Card title="Chat Placeholder">
+          <div className="h-96 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <ChatPlaceholder
+              title="Welcome to the Chat"
+              description="Start a conversation or try one of these prompts:"
+              suggestions={[
+                'What is the weather today?',
+                'Tell me a joke',
+                'Help me write code',
+                'Explain quantum physics'
+              ]}
+              onSuggestionClick={(s) => alert(`Selected: ${s}`)}
+              icon={
+                <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+                </svg>
+              }
+            />
+          </div>
+        </Card>
+
+        {/* Message Bubbles */}
+        <Card title="Message Bubbles">
+          <div className="space-y-4 max-w-3xl">
+            <MessageBubble
+              content="Hi! How can I help you today?"
+              isUser={false}
+              name="Assistant"
+              timestamp="10:30 AM"
+              avatar={<ChatAvatar isBot name="AI" size="sm" />}
+            />
+            <MessageBubble
+              content="Can you explain how React hooks work?"
+              isUser={true}
+              name="You"
+              timestamp="10:31 AM"
+              avatar={<ChatAvatar name="John" size="sm" />}
+            />
+            <MessageBubble
+              content="Of course! React Hooks are functions that let you use state and other React features without writing a class component."
+              isUser={false}
+              name="Assistant"
+              timestamp="10:31 AM"
+              status="sent"
+              avatar={<ChatAvatar isBot name="AI" size="sm" />}
+            />
+          </div>
+        </Card>
+
+        {/* Chat Avatar */}
+        <Card title="Chat Avatars">
+          <div className="flex flex-wrap items-center gap-4">
+            <ChatAvatar name="John Doe" size="xs" />
+            <ChatAvatar name="Jane Smith" size="sm" status="online" />
+            <ChatAvatar name="Bob Wilson" size="md" status="away" />
+            <ChatAvatar name="Alice Brown" size="lg" status="offline" />
+            <ChatAvatar isBot name="AI" size="md" />
+            <ChatAvatar isBot name="Bot" size="lg" status="online" />
+          </div>
+        </Card>
+
+        {/* Typing Indicator */}
+        <Card title="Typing Indicator">
+          <div className="max-w-md">
+            <TypingIndicator
+              name="Assistant"
+              avatar={<ChatAvatar isBot name="AI" size="sm" />}
+            />
+          </div>
+        </Card>
+
+        {/* Message Actions */}
+        <Card title="Message Actions">
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Hover over messages to see action buttons:
+            </p>
+            <MessageActions
+              actions={[
+                {
+                  icon: <span>📋</span>,
+                  label: 'Copy',
+                  onClick: () => alert('Copy clicked'),
+                },
+                {
+                  icon: <span>✏️</span>,
+                  label: 'Edit',
+                  onClick: () => alert('Edit clicked'),
+                },
+                {
+                  icon: <span>↩️</span>,
+                  label: 'Reply',
+                  onClick: () => alert('Reply clicked'),
+                },
+                {
+                  icon: <span>🗑️</span>,
+                  label: 'Delete',
+                  onClick: () => alert('Delete clicked'),
+                  variant: 'danger',
+                },
+              ]}
+            />
+          </div>
+        </Card>
+
+        {/* Error Message */}
+        <Card title="Error Message">
+          <ErrorMessage
+            title="Failed to send message"
+            message="There was an error sending your message. Please check your connection and try again."
+            onRetry={() => alert('Retry clicked')}
+            onDismiss={() => alert('Dismiss clicked')}
+          />
+        </Card>
+
+        {/* Message Skeleton */}
+        <Card title="Message Skeleton (Loading State)">
+          <div className="max-w-3xl">
+            <MessageSkeleton count={3} />
+          </div>
+        </Card>
+
+        {/* Citations */}
+        <Card title="Citations">
+          <div className="space-y-3 max-w-2xl">
+            <Citation
+              number={1}
+              title="Introduction to React Hooks"
+              source="React Documentation"
+              url="https://react.dev/reference/react/hooks"
+              snippet="Hooks are functions that let you 'hook into' React state and lifecycle features from function components."
+            />
+            <Citation
+              number={2}
+              title="TypeScript Handbook"
+              source="TypeScript Docs"
+              url="https://www.typescriptlang.org/docs/handbook/intro.html"
+              snippet="TypeScript is a strongly typed programming language that builds on JavaScript."
+            />
+          </div>
+        </Card>
+
       </div>
     </>
   );
