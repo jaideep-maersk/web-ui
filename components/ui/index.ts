@@ -164,3 +164,20 @@ export type { AlertBannerVariant } from './AlertBanner';
 export { SuccessMessage } from './SuccessMessage';
 export { WarningMessage } from './WarningMessage';
 export { InfoMessage } from './InfoMessage';
+
+// Tier 5: Chat Components - Advanced Rendering & Specialized (Session 12)
+export { KatexRenderer } from './KatexRenderer';
+export { HTMLRenderer } from './HTMLRenderer';
+export { SyntaxHighlighter } from './SyntaxHighlighter';
+export { ContentRenderer } from './ContentRenderer';
+export { LazyRenderer } from './LazyRenderer';
+export { MarkupRenderer } from './MarkupRenderer';
+export { ChatAnalytics } from './ChatAnalytics';
+export type { AnalyticsStat } from './ChatAnalytics';
+export { MessageSearch } from './MessageSearch';
+export type { SearchResult as MessageSearchResult } from './MessageSearch';
+export { ChatExport } from './ChatExport';
+export type { ExportFormat } from './ChatExport';
+export { ChatImport } from './ChatImport';
+export { ChatBackup } from './ChatBackup';
+export type { Backup } from './ChatBackup';
