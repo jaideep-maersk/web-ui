@@ -105,3 +105,24 @@ export { AudioPlayer } from './AudioPlayer';
 export { FileCard } from './FileCard';
 export { TableRenderer } from './TableRenderer';
 export type { TableColumn } from './TableRenderer';
+
+// Tier 5: Chat Components - Controls & Specialized (Session 9)
+export { ChatControls } from './ChatControls';
+export { ModelSelector } from './ModelSelector';
+export type { Model } from './ModelSelector';
+export { ChatSearch } from './ChatSearch';
+export type { SearchResult } from './ChatSearch';
+export { ScrollToBottom } from './ScrollToBottom';
+export { UnreadIndicator } from './UnreadIndicator';
+export { LoadMoreButton } from './LoadMoreButton';
+export { ConnectionStatus } from './ConnectionStatus';
+export type { ConnectionState } from './ConnectionStatus';
+export { NotificationBadge } from './NotificationBadge';
+export { QuickActions } from './QuickActions';
+export type { QuickAction } from './QuickActions';
+export { ExportButton } from './ExportButton';
+export { ShareButton } from './ShareButton';
+export { ChatFilter } from './ChatFilter';
+export type { FilterType } from './ChatFilter';
+export { ChatSort } from './ChatSort';
+export type { SortType } from './ChatSort';
