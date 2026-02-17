@@ -181,3 +181,21 @@ export type { ExportFormat } from './ChatExport';
 export { ChatImport } from './ChatImport';
 export { ChatBackup } from './ChatBackup';
 export type { Backup } from './ChatBackup';
+
+// Tier 5: Chat Components - Advanced Input & Specialized (Session 13)
+export { InputToolbar } from './InputToolbar';
+export { FormatButtons } from './FormatButtons';
+export { MentionInput } from './MentionInput';
+export type { MentionOption } from './MentionInput';
+export { SlashCommand } from './SlashCommand';
+export type { Command } from './SlashCommand';
+export { InputCounter } from './InputCounter';
+export { InputActions } from './InputActions';
+export { InputAttachments } from './InputAttachments';
+export type { Attachment } from './InputAttachments';
+export { ChatStatus } from './ChatStatus';
+export { PresenceIndicator } from './PresenceIndicator';
+export { TypingUsers } from './TypingUsers';
+export { ChatNotification } from './ChatNotification';
+export { QuickReply } from './QuickReply';
+export type { QuickReplyOption } from './QuickReply';
