@@ -126,3 +126,21 @@ export { ChatFilter } from './ChatFilter';
 export type { FilterType } from './ChatFilter';
 export { ChatSort } from './ChatSort';
 export type { SortType } from './ChatSort';
+
+// Tier 5: Chat Components - Specialized & Input Enhancement (Session 10)
+export { ChatOverview } from './ChatOverview';
+export type { ChatStat } from './ChatOverview';
+export { ChatSuggestion, ChatSuggestionsList } from './ChatSuggestion';
+export { WelcomeMessage } from './WelcomeMessage';
+export { EmptyState } from './EmptyState';
+export { LoadingState } from './LoadingState';
+export { OfflineState } from './OfflineState';
+export { EmojiButton } from './EmojiButton';
+export { SendButton } from './SendButton';
+export { StopButton } from './StopButton';
+export { RetryButton } from './RetryButton';
+export { RegenerateButton } from './RegenerateButton';
+export { MessageSuggestions } from './MessageSuggestions';
+export type { MessageSuggestion } from './MessageSuggestions';
+export { ChatNavigation } from './ChatNavigation';
+export type { NavItem } from './ChatNavigation';
