@@ -198,4 +198,22 @@ export { PresenceIndicator } from './PresenceIndicator';
 export { TypingUsers } from './TypingUsers';
 export { ChatNotification } from './ChatNotification';
 export { QuickReply } from './QuickReply';
+
+// Tier 5: Chat Components - Final Components (Session 14)
+export { MessageInput } from './MessageInput';
+export { ComposeArea } from './ComposeArea';
+export { FileUploadArea } from './FileUploadArea';
+export { EmojiSelector } from './EmojiSelector';
+export { AutocompleteMenu } from './AutocompleteMenu';
+export type { AutocompleteOption } from './AutocompleteMenu';
+export { InputPlaceholder } from './InputPlaceholder';
+export { InputError } from './InputError';
+export { InputHelper } from './InputHelper';
+export { ChatTranscript } from './ChatTranscript';
+export type { ChatMessage } from './ChatTranscript';
+export { ChatSummary } from './ChatSummary';
+export { QuickSettings } from './QuickSettings';
+export type { QuickSetting } from './QuickSettings';
+export { ChatTemplate } from './ChatTemplate';
+export type { ChatTemplateOption } from './ChatTemplate';
 export type { QuickReplyOption } from './QuickReply';
