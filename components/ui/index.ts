@@ -144,3 +144,23 @@ export { MessageSuggestions } from './MessageSuggestions';
 export type { MessageSuggestion } from './MessageSuggestions';
 export { ChatNavigation } from './ChatNavigation';
 export type { NavItem } from './ChatNavigation';
+
+// Tier 5: Chat Components - Support & Notification (Session 11)
+export { ChatHistory } from './ChatHistory';
+export type { ChatHistoryItem } from './ChatHistory';
+export { ChatTabs } from './ChatTabs';
+export type { ChatTab } from './ChatTabs';
+export { ChatBookmark } from './ChatBookmark';
+export { MessagePin } from './MessagePin';
+export { ChatTheme } from './ChatTheme';
+export type { Theme } from './ChatTheme';
+export { ChatSettings } from './ChatSettings';
+export type { ChatSetting } from './ChatSettings';
+export { ChatMetadata } from './ChatMetadata';
+export { NotificationToast } from './NotificationToast';
+export type { ToastPosition, ToastType } from './NotificationToast';
+export { AlertBanner } from './AlertBanner';
+export type { AlertBannerVariant } from './AlertBanner';
+export { SuccessMessage } from './SuccessMessage';
+export { WarningMessage } from './WarningMessage';
+export { InfoMessage } from './InfoMessage';
