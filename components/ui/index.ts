@@ -89,3 +89,19 @@ export { ThreadIndicator } from './ThreadIndicator';
 export { Reaction } from './Reaction';
 export { ReactionPicker } from './ReactionPicker';
 export { MarkdownRenderer } from './MarkdownRenderer';
+
+// Tier 5: Chat Components - Input & Rendering (Session 8)
+export { AttachmentButton } from './AttachmentButton';
+export { AttachmentPreview } from './AttachmentPreview';
+export { VoiceButton } from './VoiceButton';
+export { VoiceRecorder } from './VoiceRecorder';
+export { CommandButton } from './CommandButton';
+export { MentionPicker } from './MentionPicker';
+export type { MentionOption } from './MentionPicker';
+export { LinkPreview } from './LinkPreview';
+export { ImageGallery } from './ImageGallery';
+export { VideoPlayer } from './VideoPlayer';
+export { AudioPlayer } from './AudioPlayer';
+export { FileCard } from './FileCard';
+export { TableRenderer } from './TableRenderer';
+export type { TableColumn } from './TableRenderer';
