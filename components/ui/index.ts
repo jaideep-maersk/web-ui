@@ -217,3 +217,26 @@ export type { QuickSetting } from './QuickSettings';
 export { ChatTemplate } from './ChatTemplate';
 export type { ChatTemplateOption } from './ChatTemplate';
 export type { QuickReplyOption } from './QuickReply';
+
+// Tier 6: Admin Components (Session 15)
+export { UserList } from './UserList';
+export type { User } from './UserList';
+export { UserCard } from './UserCard';
+export { UserForm } from './UserForm';
+export type { UserFormData } from './UserForm';
+export { UserRole } from './UserRole';
+export { AdminPanel } from './AdminPanel';
+export type { AdminStat } from './AdminPanel';
+export { SettingsPanel } from './SettingsPanel';
+export type { Setting } from './SettingsPanel';
+export { ConfigEditor } from './ConfigEditor';
+export type { ConfigItem } from './ConfigEditor';
+export { PermissionManager } from './PermissionManager';
+export type { Permission } from './PermissionManager';
+export { DataTable } from './DataTable';
+export type { Column as DataTableColumn } from './DataTable';
+export { DataFilter } from './DataFilter';
+export type { FilterField } from './DataFilter';
+export { DataExport } from './DataExport';
+export { DataStats } from './DataStats';
+export type { Stat as DataStat } from './DataStats';
